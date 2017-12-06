@@ -140,7 +140,7 @@ task zip(type: Zip, dependsOn: build) {
 		from(dbInstGsJar)
 	}
 	
-	baseName = 'L2J_Server_' + new Date().format("yyyy-MM-dd")
+	baseName = 'L2JDevs_Core_' + new Date().format("yyyy-MM-dd")
 	println 'Build in build/distributions/' + baseName + '.zip'
 }
 
@@ -152,8 +152,8 @@ task wrapper(type: Wrapper) {
 
 eclipse {
 	project {
-		name = 'L2J_Server'
-		comment 'L2J Server Project'
+		name = 'L2JDevs_Core'
+		comment 'L2JDevs Server Project'
 		natures 'org.eclipse.buildship.core.gradleprojectbuilde'
 	}
 	jdt {
