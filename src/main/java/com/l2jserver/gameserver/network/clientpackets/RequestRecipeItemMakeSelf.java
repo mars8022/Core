@@ -19,6 +19,7 @@
 package com.l2jserver.gameserver.network.clientpackets;
 
 import com.l2jserver.gameserver.RecipeController;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.PrivateStoreType;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
 
@@ -53,13 +54,13 @@ public final class RequestRecipeItemMakeSelf extends L2GameClientPacket
 		
 		if (activeChar.getPrivateStoreType() != PrivateStoreType.NONE)
 		{
-			activeChar.sendMessage("You cannot create items while trading.");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "no_create_while_trading"));
 			return;
 		}
 		
 		if (activeChar.isInCraftMode())
 		{
-			activeChar.sendMessage("You are currently in Craft Mode.");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "player_craft_mode"));
 			return;
 		}
 		

@@ -19,6 +19,7 @@
 package com.l2jserver.gameserver.network.clientpackets;
 
 import com.l2jserver.Config;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jserver.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jserver.gameserver.model.items.instance.L2ItemInstance;
@@ -56,7 +57,7 @@ public final class RequestGetItemFromPet extends L2GameClientPacket
 		
 		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("getfrompet"))
 		{
-			player.sendMessage("You get items from pet too fast.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "get_item_pet_too_fast"));
 			return;
 		}
 		

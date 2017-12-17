@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.cache.HtmCache;
 import com.l2jserver.gameserver.data.sql.impl.TeleportLocationTable;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.datatables.SkillData;
 import com.l2jserver.gameserver.enums.InstanceType;
 import com.l2jserver.gameserver.instancemanager.CHSiegeManager;
@@ -262,7 +263,7 @@ public class L2ClanHallManagerInstance extends L2MerchantInstance
 						{
 							if (getClanHall().getOwnerId() == 0)
 							{
-								player.sendMessage("This clan hall has no owner, you cannot change the configuration.");
+								player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "ch_no_owner"));
 								return;
 							}
 							val = st.nextToken();
@@ -773,7 +774,7 @@ public class L2ClanHallManagerInstance extends L2MerchantInstance
 						{
 							if (getClanHall().getOwnerId() == 0)
 							{
-								player.sendMessage("This clan hall has no owner, you cannot change the configuration.");
+								player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "ch_no_owner"));
 								return;
 							}
 							val = st.nextToken();
@@ -897,7 +898,7 @@ public class L2ClanHallManagerInstance extends L2MerchantInstance
 								{
 									if (getClanHall().getOwnerId() == 0)
 									{
-										player.sendMessage("This clan hall has no owner, you cannot change the configuration.");
+										player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "ch_no_owner"));
 										return;
 									}
 									if (Config.DEBUG)
@@ -1150,7 +1151,7 @@ public class L2ClanHallManagerInstance extends L2MerchantInstance
 						{
 							if (getClanHall().getOwnerId() == 0)
 							{
-								player.sendMessage("This clan hall has no owner, you cannot change the configuration.");
+								player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "ch_no_owner"));
 								return;
 							}
 							val = st.nextToken();
@@ -1371,7 +1372,7 @@ public class L2ClanHallManagerInstance extends L2MerchantInstance
 				if (player.isCursedWeaponEquipped())
 				{
 					// Custom system message
-					player.sendMessage("The wielder of a cursed weapon cannot receive outside heals or buffs");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "ch_cursed_weapon"));
 					return;
 				}
 				setTarget(player);
@@ -1428,12 +1429,12 @@ public class L2ClanHallManagerInstance extends L2MerchantInstance
 					}
 					catch (Exception e)
 					{
-						player.sendMessage("Invalid skill level, contact your admin!");
+						player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "skill_invalid_level"));
 					}
 				}
 				catch (Exception e)
 				{
-					player.sendMessage("Invalid skill level, contact your admin!");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "skill_invalid_level"));
 				}
 				return;
 			}

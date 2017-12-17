@@ -20,6 +20,7 @@ package com.l2jserver.gameserver.network.clientpackets;
 
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.datatables.BotReportTable;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.PrivateStoreType;
 import com.l2jserver.gameserver.model.BlockList;
 import com.l2jserver.gameserver.model.L2Object;
@@ -57,7 +58,7 @@ public final class TradeRequest extends L2GameClientPacket
 		
 		if (!player.getAccessLevel().allowTransaction())
 		{
-			player.sendMessage("Transactions are disabled for your current Access Level.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "transactions_disabled"));
 			sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
@@ -102,7 +103,7 @@ public final class TradeRequest extends L2GameClientPacket
 		final L2PcInstance partner = target.getActingPlayer();
 		if (partner.isInOlympiadMode() || player.isInOlympiadMode())
 		{
-			player.sendMessage("A user currently participating in the Olympiad cannot accept or request a trade.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "no_trade_in_olys"));
 			return;
 		}
 		
@@ -125,19 +126,19 @@ public final class TradeRequest extends L2GameClientPacket
 		// L2J Customs: Karma punishment
 		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_TRADE && (player.getKarma() > 0))
 		{
-			player.sendMessage("You cannot trade while you are in a chaotic state.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "no_trade_in_chaotic_state"));
 			return;
 		}
 		
 		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_TRADE && (partner.getKarma() > 0))
 		{
-			player.sendMessage("You cannot request a trade while your target is in a chaotic state.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "no_tradet_to_chaotic_target"));
 			return;
 		}
 		
 		if (Config.JAIL_DISABLE_TRANSACTION && (player.isJailed() || partner.isJailed()))
 		{
-			player.sendMessage("You cannot trade while you are in in Jail.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "no_trade_in_jail"));
 			return;
 		}
 		
@@ -172,7 +173,7 @@ public final class TradeRequest extends L2GameClientPacket
 		
 		if (partner.getTradeRefusal())
 		{
-			player.sendMessage("That person is in trade refusal mode.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "no_trade_mode"));
 			return;
 		}
 		

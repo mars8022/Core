@@ -37,6 +37,7 @@ import com.l2jserver.gameserver.ThreadPoolManager;
 import com.l2jserver.gameserver.cache.HtmCache;
 import com.l2jserver.gameserver.data.xml.impl.NpcData;
 import com.l2jserver.gameserver.datatables.ItemTable;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.datatables.NpcPersonalAIData;
 import com.l2jserver.gameserver.enums.AISkillScope;
 import com.l2jserver.gameserver.enums.AIType;
@@ -1444,7 +1445,7 @@ public class L2Npc extends L2Character
 		{
 			if (Config.CHECK_KNOWN && activeChar.isGM())
 			{
-				activeChar.sendMessage("Added NPC: " + getName());
+				activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "gm_add_object").replace("%s%", getName() + ""));
 			}
 			
 			if (getRunSpeed() == 0)

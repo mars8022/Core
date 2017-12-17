@@ -39,6 +39,7 @@ import com.l2jserver.commons.database.pool.impl.ConnectionFactory;
 import com.l2jserver.gameserver.ai.CtrlIntention;
 import com.l2jserver.gameserver.data.sql.impl.CharNameTable;
 import com.l2jserver.gameserver.data.sql.impl.ClanTable;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.datatables.SpawnTable;
 import com.l2jserver.gameserver.model.L2Clan;
 import com.l2jserver.gameserver.model.L2Party;
@@ -2321,7 +2322,7 @@ public class SevenSignsFestival implements SpawnListener
 						}
 						
 						relocatePlayer(participant, false);
-						participant.sendMessage("The festival has ended. Your party leader must now register your score before the next festival takes place.");
+						participant.sendMessage(LanguageData.getInstance().getMsgByLang(participant, "ss_festival_ended"));
 					}
 					catch (NullPointerException e)
 					{
@@ -2376,7 +2377,7 @@ public class SevenSignsFestival implements SpawnListener
 				
 				participant.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
 				participant.teleToLocation(new Location(origPosition._x, origPosition._y, origPosition._z), true);
-				participant.sendMessage("You have been removed from the festival arena.");
+				participant.sendMessage(LanguageData.getInstance().getMsgByLang(participant, "ss_remove_player"));
 			}
 			catch (Exception e)
 			{
@@ -2384,7 +2385,7 @@ public class SevenSignsFestival implements SpawnListener
 				try
 				{
 					participant.teleToLocation(TeleportWhereType.TOWN);
-					participant.sendMessage("You have been removed from the festival arena.");
+					participant.sendMessage(LanguageData.getInstance().getMsgByLang(participant, "ss_remove_player"));
 				}
 				catch (NullPointerException e2)
 				{

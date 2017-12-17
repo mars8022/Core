@@ -20,6 +20,7 @@ package com.l2jserver.gameserver.network.clientpackets;
 
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.RecipeController;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jserver.gameserver.network.SystemMessageId;
 
@@ -56,7 +57,7 @@ public final class RequestRecipeBookOpen extends L2GameClientPacket
 		
 		if (activeChar.getActiveRequester() != null)
 		{
-			activeChar.sendMessage("You may not alter your recipe book while trading.");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "no_recipe_while_trading"));
 			return;
 		}
 		

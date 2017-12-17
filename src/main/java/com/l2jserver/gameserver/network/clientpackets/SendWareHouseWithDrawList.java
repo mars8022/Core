@@ -19,6 +19,7 @@
 package com.l2jserver.gameserver.network.clientpackets;
 
 import com.l2jserver.Config;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.model.ClanPrivilege;
 import com.l2jserver.gameserver.model.actor.L2Npc;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
@@ -84,7 +85,7 @@ public final class SendWareHouseWithDrawList extends L2GameClientPacket
 		
 		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("withdraw"))
 		{
-			player.sendMessage("You are withdrawing items too fast.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "withdrawing_too_fast"));
 			return;
 		}
 		
@@ -102,7 +103,7 @@ public final class SendWareHouseWithDrawList extends L2GameClientPacket
 		
 		if (!(warehouse instanceof PcWarehouse) && !player.getAccessLevel().allowTransaction())
 		{
-			player.sendMessage("Transactions are disabled for your Access Level.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "transactions_disabled"));
 			return;
 		}
 		

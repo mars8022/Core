@@ -26,6 +26,7 @@ import java.util.List;
 
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.data.xml.impl.BuyListData;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.model.L2Object;
 import com.l2jserver.gameserver.model.actor.L2Character;
 import com.l2jserver.gameserver.model.actor.instance.L2MerchantInstance;
@@ -92,7 +93,7 @@ public final class RequestSellItem extends L2GameClientPacket
 		
 		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("buy"))
 		{
-			player.sendMessage("You are buying too fast.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "buying_too_fast"));
 			return;
 		}
 		

@@ -31,6 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.l2jserver.Config;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.InstanceType;
 import com.l2jserver.gameserver.instancemanager.AuctionManager;
 import com.l2jserver.gameserver.instancemanager.ClanHallManager;
@@ -66,7 +67,7 @@ public final class L2AuctioneerInstance extends L2Npc
 		if (condition <= COND_ALL_FALSE)
 		{
 			// TODO: html
-			player.sendMessage("Wrong conditions.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "auction_wrong_conditions"));
 			return;
 		}
 		else if (condition == COND_BUSY_BECAUSE_OF_SIEGE)
@@ -130,12 +131,12 @@ public final class L2AuctioneerInstance extends L2Npc
 					}
 					catch (Exception e)
 					{
-						player.sendMessage("Invalid bid!");
+						player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "auction_invalid_bid"));
 					}
 				}
 				catch (Exception e)
 				{
-					player.sendMessage("Invalid auction duration!");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "auction_invalid_duration"));
 				}
 				return;
 			}
@@ -149,7 +150,7 @@ public final class L2AuctioneerInstance extends L2Npc
 				}
 				catch (Exception e)
 				{
-					player.sendMessage("Invalid auction");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "auction_invalid"));
 				}
 				return;
 			}
@@ -206,7 +207,7 @@ public final class L2AuctioneerInstance extends L2Npc
 				}
 				catch (Exception e)
 				{
-					player.sendMessage("Invalid auction!");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "auction_invalid"));
 				}
 				return;
 			}
@@ -232,12 +233,12 @@ public final class L2AuctioneerInstance extends L2Npc
 					}
 					catch (Exception e)
 					{
-						player.sendMessage("Invalid bid!");
+						player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "auction_invalid_bid"));
 					}
 				}
 				catch (Exception e)
 				{
-					player.sendMessage("Invalid auction!");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "auction_invalid"));
 				}
 				return;
 			}
@@ -281,7 +282,7 @@ public final class L2AuctioneerInstance extends L2Npc
 				}
 				catch (Exception e)
 				{
-					player.sendMessage("Invalid auction!");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "auction_invalid"));
 				}
 				return;
 			}
@@ -562,7 +563,7 @@ public final class L2AuctioneerInstance extends L2Npc
 				if (AuctionManager.getInstance().getAuction(player.getClan().getHideoutId()) != null)
 				{
 					AuctionManager.getInstance().getAuction(player.getClan().getHideoutId()).cancelAuction();
-					player.sendMessage("Your auction has been canceled");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "auction_canceled"));
 				}
 				return;
 			}
@@ -633,7 +634,7 @@ public final class L2AuctioneerInstance extends L2Npc
 				}
 				catch (Exception e)
 				{
-					player.sendMessage("Invalid auction!");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "auction_invalid"));
 				}
 				return;
 			}

@@ -20,6 +20,7 @@ package com.l2jserver.gameserver.network.clientpackets;
 
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.data.xml.impl.AdminData;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.PrivateStoreType;
 import com.l2jserver.gameserver.model.PcCondOverride;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
@@ -110,13 +111,13 @@ public final class RequestDropItem extends L2GameClientPacket
 		
 		if (Config.JAIL_DISABLE_TRANSACTION && activeChar.isJailed())
 		{
-			activeChar.sendMessage("You cannot drop items in Jail.");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "no_drop_in_jail"));
 			return;
 		}
 		
 		if (!activeChar.getAccessLevel().allowTransaction())
 		{
-			activeChar.sendMessage("Transactions are disabled for your Access Level.");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "transactions_disabled"));
 			activeChar.sendPacket(SystemMessageId.NOTHING_HAPPENED);
 			return;
 		}
@@ -179,7 +180,7 @@ public final class RequestDropItem extends L2GameClientPacket
 		
 		if (!activeChar.getInventory().canManipulateWithItemId(item.getId()))
 		{
-			activeChar.sendMessage("You cannot use this item.");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "item_cannot_use"));
 			return;
 		}
 		

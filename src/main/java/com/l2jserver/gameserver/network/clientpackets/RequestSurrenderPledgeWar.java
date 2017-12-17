@@ -19,6 +19,7 @@
 package com.l2jserver.gameserver.network.clientpackets;
 
 import com.l2jserver.gameserver.data.sql.impl.ClanTable;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.model.L2Clan;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jserver.gameserver.network.SystemMessageId;
@@ -54,7 +55,7 @@ public final class RequestSurrenderPledgeWar extends L2GameClientPacket
 		
 		if (clan == null)
 		{
-			activeChar.sendMessage("No such clan.");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "clan_no_such"));
 			activeChar.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
@@ -63,7 +64,7 @@ public final class RequestSurrenderPledgeWar extends L2GameClientPacket
 		
 		if (!_clan.isAtWarWith(clan.getId()))
 		{
-			activeChar.sendMessage("You aren't at war with this clan.");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "clan_no_war"));
 			activeChar.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}

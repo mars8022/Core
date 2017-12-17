@@ -38,6 +38,7 @@ import com.l2jserver.commons.database.pool.impl.ConnectionFactory;
 import com.l2jserver.gameserver.ThreadPoolManager;
 import com.l2jserver.gameserver.data.sql.impl.ClanTable;
 import com.l2jserver.gameserver.data.xml.impl.SkillTreesData;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.datatables.SkillData;
 import com.l2jserver.gameserver.model.L2Clan;
 import com.l2jserver.gameserver.model.L2SiegeClan;
@@ -698,7 +699,7 @@ public final class TerritoryWarManager implements Siegable
 	
 	public void debugReward(L2PcInstance player)
 	{
-		player.sendMessage("Registred TerrId: " + player.getSiegeSide());
+		player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "tw_register_id").replace("%s%", player.getSiegeSide() + ""));
 		if (_participantPoints.containsKey(player.getObjectId()))
 		{
 			Integer[] temp = _participantPoints.get(player.getObjectId());
@@ -712,11 +713,11 @@ public final class TerritoryWarManager implements Siegable
 		}
 		else
 		{
-			player.sendMessage("No points for you!");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "tw_register_id").replace("%s%", player.getSiegeSide() + ""));
 		}
 		if (_territoryList.containsKey(player.getSiegeSide() - 80))
 		{
-			player.sendMessage("Your Territory's jobs:");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "tw_jobs"));
 			player.sendMessage("npcKill: " + _territoryList.get(player.getSiegeSide() - 80).getQuestDone()[0]);
 			player.sendMessage("WardCaptured: " + _territoryList.get(player.getSiegeSide() - 80).getQuestDone()[1]);
 		}

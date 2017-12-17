@@ -19,6 +19,7 @@
 package com.l2jserver.gameserver.network.clientpackets;
 
 import com.l2jserver.gameserver.data.sql.impl.ClanTable;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.model.ClanPrivilege;
 import com.l2jserver.gameserver.model.L2Clan;
 import com.l2jserver.gameserver.model.L2ClanMember;
@@ -57,14 +58,14 @@ public final class RequestStopPledgeWar extends L2GameClientPacket
 		
 		if (clan == null)
 		{
-			player.sendMessage("No such clan.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "clan_no_such"));
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		if (!playerClan.isAtWarWith(clan.getId()))
 		{
-			player.sendMessage("You aren't at war with this clan.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "clan_no_war"));
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}

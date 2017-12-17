@@ -21,6 +21,7 @@ package com.l2jserver.gameserver.model;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.PetitionState;
 import com.l2jserver.gameserver.enums.PetitionType;
 import com.l2jserver.gameserver.idfactory.IdFactory;
@@ -73,7 +74,7 @@ public final class Petition
 		{
 			if (endState == PetitionState.RESPONDER_REJECT)
 			{
-				getPetitioner().sendMessage("Your petition was rejected. Please try again later.");
+				getPetitioner().sendMessage(LanguageData.getInstance().getMsgByLang(getPetitioner(), "petition_fail"));
 			}
 			else
 			{

@@ -19,6 +19,7 @@
 package com.l2jserver.gameserver.model.actor.knownlist;
 
 import com.l2jserver.Config;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.model.L2Object;
 import com.l2jserver.gameserver.model.actor.L2Character;
 import com.l2jserver.gameserver.model.actor.L2Npc;
@@ -130,7 +131,7 @@ public class PcKnownList extends PlayableKnownList
 		
 		if (Config.CHECK_KNOWN && (object instanceof L2Npc) && getActiveChar().isGM())
 		{
-			getActiveChar().sendMessage("Removed NPC: " + object.getName());
+			getActiveChar().sendMessage(LanguageData.getInstance().getMsgByLang(getActiveChar(), "gm_remove_object").replace("%s%", object.getName() + ""));
 		}
 		
 		return true;

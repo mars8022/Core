@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.cache.HtmCache;
 import com.l2jserver.gameserver.data.sql.impl.TeleportLocationTable;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.InstanceType;
 import com.l2jserver.gameserver.instancemanager.CastleManager;
 import com.l2jserver.gameserver.instancemanager.SiegeManager;
@@ -125,7 +126,7 @@ public final class L2TeleporterInstance extends L2Npc
 				}
 				else
 				{
-					player.sendMessage("You don't have the sufficient access level to teleport there.");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "teleport_no_level"));
 				}
 				return;
 			}
@@ -267,7 +268,7 @@ public final class L2TeleporterInstance extends L2Npc
 			}
 			else if (!Config.ALT_GAME_KARMA_PLAYER_CAN_USE_GK && (player.getKarma() > 0)) // karma
 			{
-				player.sendMessage("Go away, you're not welcome here.");
+				player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "teleport_go_away"));
 				return;
 			}
 			else if (player.isCombatFlagEquipped())

@@ -18,6 +18,7 @@
  */
 package com.l2jserver.gameserver.network.clientpackets;
 
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.model.ClanPrivilege;
 import com.l2jserver.gameserver.model.L2Clan;
 import com.l2jserver.gameserver.model.L2ClanMember;
@@ -115,7 +116,7 @@ public final class RequestPledgeSetAcademyMaster extends L2GameClientPacket
 			if ((apprenticeMember.getSponsor() != 0) || (sponsorMember.getApprentice() != 0) || (apprenticeMember.getApprentice() != 0) || (sponsorMember.getSponsor() != 0))
 			{
 				// TODO retail message
-				activeChar.sendMessage("Remove previous connections first.");
+				activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "remove_previous_connection"));
 				return;
 			}
 			if (apprentice != null)

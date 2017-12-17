@@ -29,6 +29,7 @@ import com.l2jserver.Config;
 import com.l2jserver.commons.database.pool.impl.ConnectionFactory;
 import com.l2jserver.gameserver.ThreadPoolManager;
 import com.l2jserver.gameserver.data.xml.impl.TransformData;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.datatables.SkillData;
 import com.l2jserver.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jserver.gameserver.model.L2Party.messageType;
@@ -722,7 +723,7 @@ public class CursedWeapon implements INamable
 		}
 		else
 		{
-			player.sendMessage(_name + " isn't in the World.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "player_no_connect").replace("%s%", _name + ""));
 		}
 	}
 	

@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.SevenSignsFestival;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.PrivateStoreType;
 import com.l2jserver.gameserver.instancemanager.AntiFeedManager;
 import com.l2jserver.gameserver.model.L2Party;
@@ -75,7 +76,7 @@ public final class RequestRestart extends L2GameClientPacket
 		
 		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
 		{
-			player.sendMessage("Cannot restart while trading");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "no_restart_while_trading"));
 			sendPacket(RestartResponse.valueOf(false));
 			return;
 		}
@@ -99,7 +100,7 @@ public final class RequestRestart extends L2GameClientPacket
 		{
 			if (SevenSignsFestival.getInstance().isFestivalInitialized())
 			{
-				player.sendMessage("You cannot restart while you are a participant in a festival.");
+				player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "ss_no_restart_player"));
 				sendPacket(RestartResponse.valueOf(false));
 				return;
 			}

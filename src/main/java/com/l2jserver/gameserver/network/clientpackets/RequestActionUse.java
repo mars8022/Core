@@ -28,6 +28,7 @@ import com.l2jserver.gameserver.ai.NextAction;
 import com.l2jserver.gameserver.data.sql.impl.SummonSkillsTable;
 import com.l2jserver.gameserver.data.xml.impl.PetDataTable;
 import com.l2jserver.gameserver.datatables.BotReportTable;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.datatables.SkillData;
 import com.l2jserver.gameserver.enums.MountType;
 import com.l2jserver.gameserver.enums.PrivateStoreType;
@@ -370,7 +371,7 @@ public final class RequestActionUse extends L2GameClientPacket
 				}
 				else
 				{
-					activeChar.sendMessage("This feature is disabled.");
+					activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "feature_disabled"));
 				}
 				break;
 			case 67: // Steer

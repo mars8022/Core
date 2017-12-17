@@ -19,6 +19,7 @@
 package com.l2jserver.gameserver.network.clientpackets;
 
 import com.l2jserver.Config;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.PartyDistributionType;
 import com.l2jserver.gameserver.model.BlockList;
 import com.l2jserver.gameserver.model.L2Party;
@@ -66,7 +67,7 @@ public final class RequestJoinParty extends L2GameClientPacket
 		
 		if ((target.getClient() == null) || target.getClient().isDetached())
 		{
-			requestor.sendMessage("Player is in offline mode.");
+			requestor.sendMessage(LanguageData.getInstance().getMsgByLang(requestor, "player_offline"));
 			return;
 		}
 		
@@ -122,7 +123,7 @@ public final class RequestJoinParty extends L2GameClientPacket
 		
 		if (target.isJailed() || requestor.isJailed())
 		{
-			requestor.sendMessage("You cannot invite a player while is in Jail.");
+			requestor.sendMessage(LanguageData.getInstance().getMsgByLang(requestor, "no_invite_in_jail"));
 			return;
 		}
 		
@@ -147,7 +148,7 @@ public final class RequestJoinParty extends L2GameClientPacket
 		{
 			if (requestor.getParty().isInDimensionalRift())
 			{
-				requestor.sendMessage("You cannot invite a player when you are in the Dimensional Rift.");
+				requestor.sendMessage(LanguageData.getInstance().getMsgByLang(requestor, "no_invite_in_rift"));
 			}
 			else
 			{

@@ -26,6 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.ThreadPoolManager;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.instancemanager.AntiFeedManager;
 import com.l2jserver.gameserver.model.L2Party;
 import com.l2jserver.gameserver.model.L2World;
@@ -329,7 +330,7 @@ public class OlympiadManager
 				if (teamPoints < 10)
 				{
 					// TODO: replace with retail message
-					player.sendMessage("Your team must have at least 10 points in total.");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "event_team_need_points"));
 					// remove previously registered party members
 					if (Config.L2JMOD_DUALBOX_CHECK_MAX_OLYMPIAD_PARTICIPANTS_PER_IP > 0)
 					{
@@ -490,7 +491,7 @@ public class OlympiadManager
 		final int charId = noble.getObjectId();
 		if (noble.isOnEvent())
 		{
-			player.sendMessage("You can't join olympiad while participating on TvT Event.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "event_no_register_in_other_event"));
 			return false;
 		}
 		

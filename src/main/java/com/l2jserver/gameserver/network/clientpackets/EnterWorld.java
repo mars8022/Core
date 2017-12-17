@@ -18,8 +18,6 @@
  */
 package com.l2jserver.gameserver.network.clientpackets;
 
-import java.util.Base64;
-
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.LoginServerThread;
 import com.l2jserver.gameserver.SevenSigns;
@@ -27,6 +25,7 @@ import com.l2jserver.gameserver.cache.HtmCache;
 import com.l2jserver.gameserver.data.sql.impl.AnnouncementsTable;
 import com.l2jserver.gameserver.data.xml.impl.AdminData;
 import com.l2jserver.gameserver.data.xml.impl.SkillTreesData;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.instancemanager.CHSiegeManager;
 import com.l2jserver.gameserver.instancemanager.CastleManager;
 import com.l2jserver.gameserver.instancemanager.ClanHallManager;
@@ -433,12 +432,6 @@ public class EnterWorld extends L2GameClientPacket
 		}
 		
 		activeChar.sendPacket(SystemMessageId.WELCOME_TO_LINEAGE);
-		
-		activeChar.sendMessage(getText("VGhpcyBTZXJ2ZXIgdXNlcyBMMkosIGEgUHJvamVjdCBmb3VuZGVkIGJ5IEwyQ2hlZg=="));
-		activeChar.sendMessage(getText("YW5kIGRldmVsb3BlZCBieSBMMkogVGVhbSBhdCB3d3cubDJqc2VydmVyLmNvbQ=="));
-		activeChar.sendMessage(getText("Q29weXJpZ2h0IDIwMDQtMjAxNQ=="));
-		activeChar.sendMessage(getText("VGhhbmsgeW91IGZvciAxMSB5ZWFycyE="));
-		
 		SevenSigns.getInstance().sendCurrentPeriodMsg(activeChar);
 		AnnouncementsTable.getInstance().showAnnouncements(activeChar);
 		
@@ -605,7 +598,7 @@ public class EnterWorld extends L2GameClientPacket
 		final L2PcInstance partner = L2World.getInstance().getPlayer(cha.getPartnerId());
 		if (partner != null)
 		{
-			partner.sendMessage("Your Partner has logged in.");
+			partner.sendMessage(LanguageData.getInstance().getMsgByLang(partner, "enter_with_partner"));
 		}
 	}
 	
@@ -651,15 +644,6 @@ public class EnterWorld extends L2GameClientPacket
 				apprentice.sendPacket(msg);
 			}
 		}
-	}
-	
-	/**
-	 * @param string
-	 * @return
-	 */
-	private String getText(String string)
-	{
-		return new String(Base64.getDecoder().decode(string));
 	}
 	
 	@Override

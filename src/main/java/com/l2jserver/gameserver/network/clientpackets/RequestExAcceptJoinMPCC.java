@@ -18,6 +18,7 @@
  */
 package com.l2jserver.gameserver.network.clientpackets;
 
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.model.L2CommandChannel;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jserver.gameserver.network.SystemMessageId;
@@ -70,7 +71,7 @@ public final class RequestExAcceptJoinMPCC extends L2GameClientPacket
 			}
 			else
 			{
-				requestor.sendMessage("The player declined to join your Command Channel.");
+				requestor.sendMessage(LanguageData.getInstance().getMsgByLang(requestor, "command_channel_declined"));
 			}
 			
 			player.setActiveRequester(null);

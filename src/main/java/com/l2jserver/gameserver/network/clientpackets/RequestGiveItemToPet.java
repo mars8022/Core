@@ -19,6 +19,7 @@
 package com.l2jserver.gameserver.network.clientpackets;
 
 import com.l2jserver.Config;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.PrivateStoreType;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jserver.gameserver.model.actor.instance.L2PetInstance;
@@ -55,7 +56,7 @@ public final class RequestGiveItemToPet extends L2GameClientPacket
 		
 		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("giveitemtopet"))
 		{
-			player.sendMessage("You are giving items to pet too fast.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "give_item_pet_too_fast"));
 			return;
 		}
 		
@@ -71,7 +72,7 @@ public final class RequestGiveItemToPet extends L2GameClientPacket
 		
 		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
 		{
-			player.sendMessage("You cannot exchange items while trading.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "no_exchange_items"));
 			return;
 		}
 		

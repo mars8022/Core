@@ -36,6 +36,7 @@ import com.l2jserver.commons.database.pool.impl.ConnectionFactory;
 import com.l2jserver.gameserver.ThreadPoolManager;
 import com.l2jserver.gameserver.data.sql.impl.ClanTable;
 import com.l2jserver.gameserver.data.xml.impl.SiegeScheduleData;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.SiegeTeleportWhoType;
 import com.l2jserver.gameserver.instancemanager.CastleManager;
 import com.l2jserver.gameserver.instancemanager.MercTicketManager;
@@ -947,7 +948,7 @@ public class Siege implements Siegable
 	{
 		if (getCastle().getOwnerId() <= 0)
 		{
-			player.sendMessage("You cannot register as a defender because " + getCastle().getName() + " is owned by NPC.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "no_register_defender").replace("%s%", getCastle().getName() + ""));
 			return;
 		}
 		

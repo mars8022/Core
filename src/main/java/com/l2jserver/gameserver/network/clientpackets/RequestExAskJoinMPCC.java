@@ -18,6 +18,7 @@
  */
 package com.l2jserver.gameserver.network.clientpackets;
 
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.model.L2Party;
 import com.l2jserver.gameserver.model.L2World;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
@@ -92,7 +93,7 @@ public final class RequestExAskJoinMPCC extends L2GameClientPacket
 					}
 					else
 					{
-						activeChar.sendMessage(player.getName() + " doesn't have party and cannot be invited to Command Channel.");
+						activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "command_channel_no_party").replace("%s%", player.getName() + ""));
 					}
 					
 				}
@@ -123,7 +124,7 @@ public final class RequestExAskJoinMPCC extends L2GameClientPacket
 					}
 					else
 					{
-						activeChar.sendMessage(player.getName() + " doesn't have party and cannot be invited to Command Channel.");
+						activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "command_channel_no_party").replace("%s%", player.getName() + ""));
 					}
 				}
 			}
@@ -171,7 +172,7 @@ public final class RequestExAskJoinMPCC extends L2GameClientPacket
 			targetLeader.sendPacket(sm);
 			targetLeader.sendPacket(new ExAskJoinMPCC(requestor.getName()));
 			
-			requestor.sendMessage("You invited " + targetLeader.getName() + " to your Command Channel.");
+			requestor.sendMessage(LanguageData.getInstance().getMsgByLang(requestor, "command_channel_invite").replace("%s%", targetLeader.getName() + ""));
 		}
 		else
 		{

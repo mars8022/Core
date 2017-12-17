@@ -18,6 +18,7 @@
  */
 package com.l2jserver.gameserver.model.conditions;
 
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.instancemanager.CastleManager;
 import com.l2jserver.gameserver.instancemanager.FortManager;
 import com.l2jserver.gameserver.instancemanager.TerritoryWarManager;
@@ -67,17 +68,17 @@ public class ConditionPlayerCanCreateOutpost extends Condition
 		
 		if (((fort != null) && (fort.getResidenceId() == 0)) || ((castle != null) && (castle.getResidenceId() == 0)))
 		{
-			player.sendMessage("You must be on fort or castle ground to construct an outpost or flag.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "outpost_residence_id"));
 			canCreateOutpost = false;
 		}
 		else if (((fort != null) && !fort.getZone().isActive()) || ((castle != null) && !castle.getZone().isActive()))
 		{
-			player.sendMessage("You can only construct an outpost or flag on siege field.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "outpost_siege_active"));
 			canCreateOutpost = false;
 		}
 		else if (!player.isClanLeader())
 		{
-			player.sendMessage("You must be a clan leader to construct an outpost or flag.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "outpost_only_leader"));
 			canCreateOutpost = false;
 		}
 		else if (TerritoryWarManager.getInstance().getHQForClan(player.getClan()) != null)

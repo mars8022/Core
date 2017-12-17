@@ -24,6 +24,7 @@ import java.util.logging.Level;
 
 import com.l2jserver.Config;
 import com.l2jserver.commons.database.pool.impl.ConnectionFactory;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.PrivateStoreType;
 import com.l2jserver.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jserver.gameserver.model.PcCondOverride;
@@ -74,7 +75,7 @@ public final class RequestDestroyItem extends L2GameClientPacket
 		
 		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("destroy"))
 		{
-			activeChar.sendMessage("You are destroying items too fast.");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "destroying_items_too_fast"));
 			return;
 		}
 		
@@ -137,7 +138,7 @@ public final class RequestDestroyItem extends L2GameClientPacket
 		
 		if (!activeChar.getInventory().canManipulateWithItemId(itemToRemove.getId()))
 		{
-			activeChar.sendMessage("You cannot use this item.");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "item_cannot_use"));
 			return;
 		}
 		

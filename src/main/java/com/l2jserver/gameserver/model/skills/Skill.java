@@ -32,6 +32,7 @@ import java.util.logging.Logger;
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.GeoData;
 import com.l2jserver.gameserver.data.xml.impl.SkillTreesData;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.datatables.SkillData;
 import com.l2jserver.gameserver.enums.MountType;
 import com.l2jserver.gameserver.enums.ShotType;
@@ -1056,7 +1057,8 @@ public class Skill implements IIdentifiable
 				_log.log(Level.WARNING, "Exception in L2Skill.getTargetList(): " + e.getMessage(), e);
 			}
 		}
-		activeChar.sendMessage("Target type of skill is not currently handled.");
+		
+		activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "skill_target_null"));
 		return EMPTY_TARGET_LIST;
 	}
 	

@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.InstanceType;
 import com.l2jserver.gameserver.enums.ShotType;
 import com.l2jserver.gameserver.handler.ActionHandler;
@@ -580,7 +581,7 @@ public abstract class L2Object extends ListenersContainer implements IIdentifiab
 		else if (isPlayer())
 		{
 			((L2Character) this).teleToLocation(new Location(0, 0, 0), false);
-			((L2Character) this).sendMessage("Error with your coords, Please ask a GM for help!");
+			((L2Character) this).sendMessage(LanguageData.getInstance().getMsgByLang(((L2Character) this), "coords_fail"));
 		}
 	}
 	

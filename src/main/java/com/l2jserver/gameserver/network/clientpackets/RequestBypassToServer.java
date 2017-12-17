@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.ai.CtrlIntention;
 import com.l2jserver.gameserver.data.xml.impl.AdminData;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.InstanceType;
 import com.l2jserver.gameserver.enums.PlayerAction;
 import com.l2jserver.gameserver.handler.AdminCommandHandler;
@@ -137,7 +138,7 @@ public final class RequestBypassToServer extends L2GameClientPacket
 				{
 					if (activeChar.isGM())
 					{
-						activeChar.sendMessage("The command " + command.substring(6) + " does not exist!");
+						activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "gm_command_not_exist").replace("%s%", command.substring(6) + ""));
 					}
 					_log.warning(activeChar + " requested not registered admin command '" + command + "'");
 					return;
@@ -145,7 +146,7 @@ public final class RequestBypassToServer extends L2GameClientPacket
 				
 				if (!AdminData.getInstance().hasAccess(command, activeChar.getAccessLevel()))
 				{
-					activeChar.sendMessage("You don't have the access rights to use this command!");
+					activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "gm_command_not_access"));
 					_log.warning("Character " + activeChar.getName() + " tried to use admin command " + command + ", without proper access level!");
 					return;
 				}
