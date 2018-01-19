@@ -18,6 +18,8 @@
  */
 package com.l2jserver.gameserver.network.clientpackets;
 
+import java.util.Base64;
+
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.LoginServerThread;
 import com.l2jserver.gameserver.SevenSigns;
@@ -432,6 +434,12 @@ public class EnterWorld extends L2GameClientPacket
 		}
 		
 		activeChar.sendPacket(SystemMessageId.WELCOME_TO_LINEAGE);
+		
+		activeChar.sendMessage(getText("VGhpcyBzZXJ2ZXIgdXNlcyB0aGUgRlJFRSB2ZXJzaW9uIG9mIEwySkRldnMs"));
+		activeChar.sendMessage(getText("d2hpY2ggaXMgYmVpbmcgZGV2ZWxvcGVkIGJ5IHRoZSBMMkpEZXZzIFRlYW0="));
+		activeChar.sendMessage(getText("Q29weXJpZ2h0IDIwMDQtMjAxOA=="));
+		activeChar.sendMessage(getText("VGhhbmsgeW91IGZvciAxNCB5ZWFycyE="));
+		
 		SevenSigns.getInstance().sendCurrentPeriodMsg(activeChar);
 		AnnouncementsTable.getInstance().showAnnouncements(activeChar);
 		
@@ -644,6 +652,15 @@ public class EnterWorld extends L2GameClientPacket
 				apprentice.sendPacket(msg);
 			}
 		}
+	}
+	
+	/**
+	 * @param string
+	 * @return
+	 */
+	private String getText(String string)
+	{
+		return new String(Base64.getDecoder().decode(string));
 	}
 	
 	@Override
