@@ -26,6 +26,8 @@ import com.l2jserver.gameserver.enums.audio.Music;
 import com.l2jserver.gameserver.model.actor.L2Npc;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jserver.gameserver.model.events.AbstractScript;
+import com.l2jserver.gameserver.model.events.EventDispatcher;
+import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerFish;
 import com.l2jserver.gameserver.network.SystemMessageId;
 import com.l2jserver.gameserver.network.serverpackets.ExFishingHpRegen;
 import com.l2jserver.gameserver.network.serverpackets.ExFishingStartCombat;
@@ -160,9 +162,18 @@ public class L2Fishing implements Runnable
 				{
 					_fisher.sendPacket(SystemMessageId.YOU_CAUGHT_SOMETHING);
 					_fisher.addItem("Fishing", _fishId, 1, null, true);
+					
+					// Notify to scripts
+					EventDispatcher.getInstance().notifyEventAsync(new OnPlayerFish(_fisher, fishingMonster, true));
 				}
 			}
 		}
+		else
+		{
+			// Notify to scripts
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerFish(_fisher, null, false));
+		}
+		
 		_fisher.endFishing(win);
 		_fisher = null;
 	}
