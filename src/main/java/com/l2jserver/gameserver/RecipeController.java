@@ -36,6 +36,8 @@ import com.l2jserver.gameserver.model.L2RecipeList;
 import com.l2jserver.gameserver.model.L2RecipeStatInstance;
 import com.l2jserver.gameserver.model.TempItem;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jserver.gameserver.model.events.EventDispatcher;
+import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerCraft;
 import com.l2jserver.gameserver.model.itemcontainer.Inventory;
 import com.l2jserver.gameserver.model.items.L2Item;
 import com.l2jserver.gameserver.model.items.instance.L2ItemInstance;
@@ -413,6 +415,9 @@ public class RecipeController
 			{
 				rewardPlayer(); // and immediately puts created item in its place
 				updateMakeInfo(true);
+				
+				// Notify to scripts
+				EventDispatcher.getInstance().notifyEventAsync(new OnPlayerCraft(_player, _target, _recipeList, true));
 			}
 			else
 			{
@@ -429,6 +434,9 @@ public class RecipeController
 					msg.addItemName(_recipeList.getItemId());
 					msg.addLong(_price);
 					_target.sendPacket(msg);
+					
+					// Notify to scripts
+					EventDispatcher.getInstance().notifyEventAsync(new OnPlayerCraft(_player, _target, _recipeList, false));
 				}
 				else
 				{

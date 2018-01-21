@@ -50,11 +50,13 @@ import com.l2jserver.gameserver.model.events.impl.character.playable.OnPlayableE
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerAugment;
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerBypass;
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerChat;
+import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerCraft;
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerCreate;
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerDelete;
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerDlgAnswer;
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerEquipItem;
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerFameChanged;
+import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerFish;
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerHennaAdd;
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerHennaRemove;
 import com.l2jserver.gameserver.model.events.impl.character.player.OnPlayerKarmaChanged;
@@ -180,6 +182,9 @@ public enum EventType
 	ON_PLAYER_BYPASS(OnPlayerBypass.class, void.class),
 	ON_PLAYER_CHAT(OnPlayerChat.class, void.class, ChatFilterReturn.class),
 	
+	// Craft event
+	ON_PLAYER_CRAFT(OnPlayerCraft.class, void.class),
+	
 	// Tutorial events
 	ON_PLAYER_TUTORIAL_EVENT(OnPlayerTutorialEvent.class, void.class, void.class),
 	ON_PLAYER_TUTORIAL_CMD(OnPlayerTutorialCmd.class, void.class, void.class),
@@ -193,6 +198,7 @@ public enum EventType
 	ON_PLAYER_CLAN_LEADER_CHANGE(OnPlayerClanLeaderChange.class, void.class),
 	ON_PLAYER_CLAN_LEFT(OnPlayerClanLeft.class, void.class),
 	ON_PLAYER_CLAN_LVLUP(OnPlayerClanLvlUp.class, void.class),
+	
 	// Clan warehouse events
 	ON_PLAYER_CLAN_WH_ITEM_ADD(OnPlayerClanWHItemAdd.class, void.class),
 	ON_PLAYER_CLAN_WH_ITEM_DESTROY(OnPlayerClanWHItemDestroy.class, void.class),
@@ -202,15 +208,21 @@ public enum EventType
 	ON_PLAYER_DLG_ANSWER(OnPlayerDlgAnswer.class, void.class, TerminateReturn.class),
 	ON_PLAYER_EQUIP_ITEM(OnPlayerEquipItem.class, void.class),
 	ON_PLAYER_FAME_CHANGED(OnPlayerFameChanged.class, void.class),
+	
+	// Fish event
+	ON_PLAYER_FISH(OnPlayerFish.class, void.class),
+	
 	// Henna events
 	ON_PLAYER_HENNA_ADD(OnPlayerHennaAdd.class, void.class),
 	ON_PLAYER_HENNA_REMOVE(OnPlayerHennaRemove.class, void.class),
+	
 	// Inventory events
 	ON_PLAYER_ITEM_ADD(OnPlayerItemAdd.class, void.class),
 	ON_PLAYER_ITEM_DESTROY(OnPlayerItemDestroy.class, void.class),
 	ON_PLAYER_ITEM_DROP(OnPlayerItemDrop.class, void.class),
 	ON_PLAYER_ITEM_PICKUP(OnPlayerItemPickup.class, void.class),
 	ON_PLAYER_ITEM_TRANSFER(OnPlayerItemTransfer.class, void.class),
+	
 	// Other player events
 	ON_PLAYER_KARMA_CHANGED(OnPlayerKarmaChanged.class, void.class),
 	ON_PLAYER_LEVEL_CHANGED(OnPlayerLevelChanged.class, void.class),
