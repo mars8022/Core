@@ -19,6 +19,7 @@
 package com.l2jserver.gameserver.network.clientpackets;
 
 import java.util.Base64;
+import java.util.Calendar;
 
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.LoginServerThread;
@@ -435,10 +436,15 @@ public class EnterWorld extends L2GameClientPacket
 		
 		activeChar.sendPacket(SystemMessageId.WELCOME_TO_LINEAGE);
 		
-		activeChar.sendMessage(getText("VGhpcyBzZXJ2ZXIgdXNlcyB0aGUgRlJFRSB2ZXJzaW9uIG9mIEwySkRldnMs"));
-		activeChar.sendMessage(getText("d2hpY2ggaXMgYmVpbmcgZGV2ZWxvcGVkIGJ5IHRoZSBMMkpEZXZzIFRlYW0="));
-		activeChar.sendMessage(getText("Q29weXJpZ2h0IDIwMDQtMjAxOA=="));
-		activeChar.sendMessage(getText("VGhhbmsgeW91IGZvciAxNCB5ZWFycyE="));
+		if (Config.FOUNDERS_AND_TEAM_LICENSE_MESSAGE_ENABLED)
+		{
+			final int actualYear = Calendar.getInstance().get(Calendar.YEAR);
+			final int totalYears = actualYear - 2004;
+			activeChar.sendMessage(getText("VGhpcyBTZXJ2ZXIgdXNlcyBMMkosIGEgUHJvamVjdCBmb3VuZGVkIGJ5IEwyQ2hlZg=="));
+			activeChar.sendMessage(getText("YW5kIGRldmVsb3BlZCBieSBMMkogVGVhbSBhdCB3d3cubDJqc2VydmVyLmNvbQ=="));
+			activeChar.sendMessage(getText("Q29weXJpZ2h0IDIwMDQt") + actualYear);
+			activeChar.sendMessage(getText("VGhhbmsgeW91IGZvciA=") + totalYears + getText("IHllYXJzIQ=="));
+		}
 		
 		SevenSigns.getInstance().sendCurrentPeriodMsg(activeChar);
 		AnnouncementsTable.getInstance().showAnnouncements(activeChar);
