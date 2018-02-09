@@ -35,7 +35,6 @@ import com.l2jserver.gameserver.enums.PrivateStoreType;
 import com.l2jserver.gameserver.instancemanager.AirShipManager;
 import com.l2jserver.gameserver.model.L2Object;
 import com.l2jserver.gameserver.model.actor.L2Summon;
-import com.l2jserver.gameserver.model.actor.instance.L2BabyPetInstance;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jserver.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jserver.gameserver.model.actor.instance.L2SiegeFlagInstance;
@@ -633,10 +632,7 @@ public final class RequestActionUse extends L2GameClientPacket
 				useSkill(6044, false);
 				break;
 			case 1084: // Switch State
-				if (summon instanceof L2BabyPetInstance)
-				{
-					useSkill(6054, true);
-				}
+				useSkill(6054, true);
 				break;
 			case 1086: // Panther Cancel
 				useSkill(6094, false);
@@ -878,9 +874,9 @@ public final class RequestActionUse extends L2GameClientPacket
 			return;
 		}
 		
-		if (summon instanceof L2BabyPetInstance)
+		if (summon instanceof L2PetInstance)
 		{
-			if (!((L2BabyPetInstance) summon).isInSupportMode())
+			if (!((L2PetInstance) summon).isInSupportMode())
 			{
 				sendPacket(SystemMessageId.PET_AUXILIARY_MODE_CANNOT_USE_SKILLS);
 				return;
@@ -912,9 +908,9 @@ public final class RequestActionUse extends L2GameClientPacket
 	
 	private boolean canControl(L2Summon summon)
 	{
-		if (summon instanceof L2BabyPetInstance)
+		if (summon instanceof L2PetInstance)
 		{
-			if (!((L2BabyPetInstance) summon).isInSupportMode())
+			if (!((L2PetInstance) summon).isInSupportMode())
 			{
 				sendPacket(SystemMessageId.PET_AUXILIARY_MODE_CANNOT_USE_SKILLS);
 				return false;
