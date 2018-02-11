@@ -11,6 +11,8 @@ This page only gives very basic information, for the detailed information about 
 Links
 --------------
 
+- [Third-party licenses](dist/doc)
+
 - [Web Site](http://www.united-extreme.com/u3games/l2jdev/)
 
 - [Forums](http://www.united-extreme.com/u3games/l2jdev/forum/)
