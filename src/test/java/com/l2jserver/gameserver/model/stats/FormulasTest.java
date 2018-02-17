@@ -39,6 +39,7 @@ public class FormulasTest
 	public void testCalcAtkSpd(int hitTime, boolean isChanneling, int channelingSkillId, boolean isStatic, boolean isMagic, //
 		int mAtkSpeed, double pAtkSpeed, boolean isChargedSpiritshots, boolean isChargedBlessedSpiritShots, double expected)
 	{
+		@SuppressWarnings("deprecation")
 		final L2Character character = new MockUp<L2Character>()
 		{
 			@Mock
@@ -71,6 +72,7 @@ public class FormulasTest
 			}
 		}.getMockInstance();
 		
+		@SuppressWarnings("deprecation")
 		final Skill skill = new MockUp<Skill>()
 		{
 			@Mock
@@ -111,6 +113,7 @@ public class FormulasTest
 	private Iterator<Object[]> provideCharacters()
 	{
 		final Set<Object[]> result = new HashSet<>();
+		@SuppressWarnings("deprecation")
 		final L2Character c1 = new MockUp<L2Character>()
 		{
 			@Mock
@@ -119,6 +122,7 @@ public class FormulasTest
 				return true;
 			}
 		}.getMockInstance();
+		@SuppressWarnings("deprecation")
 		final L2Character c2 = new MockUp<L2Character>()
 		{
 			@Mock
