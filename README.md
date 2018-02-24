@@ -1,7 +1,14 @@
-L2JDevs Core Project
+<img src='https://i.imgur.com/vOC9US8.png' />
+
+Professional Lineage 2 High Five Emulator!
+
+Server emulator fully written in Java.
+
+
+L2JDevs Project
 ==============
 
-L2JDevs Core is an open-source server emulator fully written in Java for the famous Korean MMORPG.
+L2JDevs is an open-source server emulator fully written in Java for the famous Korean MMORPG.
 --------------
 
 This page only gives very basic information, for the detailed information about building and developing L2JDevs Core, please visit the developers forums.
@@ -13,6 +20,6 @@ Links
 
 - [Third-party licenses](dist/doc)
 
-- [Web Site](http://www.united-extreme.com/u3games/l2jdev/)
+- [Web Site](http://www.l2jdevs.org)
 
-- [Forums](http://www.united-extreme.com/u3games/l2jdev/forum/)
+- [Forums](http://www.l2jdevs.org/forum)
