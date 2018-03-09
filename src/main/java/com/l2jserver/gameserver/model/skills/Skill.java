@@ -193,7 +193,7 @@ public class Skill implements IIdentifiable
 	private final boolean _isDebuff;
 	
 	private final boolean _isSuicideAttack;
-	private final boolean _canBeDispeled;
+	private final boolean _irreplaceableBuff;
 	
 	private final boolean _isClanSkill;
 	private final boolean _excludedFromCheck;
@@ -348,7 +348,7 @@ public class Skill implements IIdentifiable
 		
 		_flyType = set.getEnum("flyType", FlyType.class, null);
 		
-		_canBeDispeled = set.getBoolean("canBeDispeled", true);
+		_irreplaceableBuff = set.getBoolean("irreplaceableBuff", false);
 		
 		_excludedFromCheck = set.getBoolean("excludedFromCheck", false);
 		_simultaneousCast = set.getBoolean("simultaneousCast", false);
@@ -1597,9 +1597,13 @@ public class Skill implements IIdentifiable
 		_refId = val;
 	}
 	
-	public boolean canBeDispeled()
+	/**
+	 * Verify if the skill can be replaced.
+	 * @return {@code true} if skill can be replaced, {@code false} otherwise
+	 */
+	public boolean isIrreplaceableBuff()
 	{
-		return _canBeDispeled;
+		return _irreplaceableBuff;
 	}
 	
 	/**
@@ -1608,7 +1612,7 @@ public class Skill implements IIdentifiable
 	 */
 	public boolean canBeStolen()
 	{
-		return !isPassive() && !isToggle() && !isDebuff() && !isHeroSkill() && !isGMSkill() && !(isStatic() && (getId() != CommonSkill.CARAVANS_SECRET_MEDICINE.getId())) && canBeDispeled() && (getId() != CommonSkill.SERVITOR_SHARE.getId());
+		return !isPassive() && !isToggle() && !isDebuff() && !isHeroSkill() && !isGMSkill() && !isIrreplaceableBuff() && !(isStatic() && (getId() != CommonSkill.CARAVANS_SECRET_MEDICINE.getId()) && (getMagicLevel() >= 0));
 	}
 	
 	public boolean isClanSkill()
