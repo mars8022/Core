@@ -66,7 +66,6 @@ import com.l2jserver.gameserver.model.stats.functions.AbstractFunction;
 import com.l2jserver.gameserver.model.stats.functions.FuncTemplate;
 import com.l2jserver.gameserver.model.zone.ZoneId;
 import com.l2jserver.gameserver.network.SystemMessageId;
-import com.l2jserver.gameserver.network.serverpackets.FlyToLocation.FlyType;
 import com.l2jserver.gameserver.network.serverpackets.SystemMessage;
 import com.l2jserver.gameserver.util.Util;
 import com.l2jserver.util.Rnd;
@@ -172,10 +171,6 @@ public class Skill implements IIdentifiable
 	private final int _chargeConsume;
 	private final int _soulMaxConsume;
 	
-	private final boolean _isHeroSkill; // If true the skill is a Hero Skill
-	private final boolean _isGMSkill; // True if skill is GM skill
-	private final boolean _isSevenSigns;
-	
 	private final boolean _directHpDmg; // If true then damage is being make directly
 	private final int _effectPoint;
 	// Condition lists
@@ -187,15 +182,11 @@ public class Skill implements IIdentifiable
 	
 	private final Map<EffectScope, List<AbstractEffect>> _effectLists = new EnumMap<>(EffectScope.class);
 	
-	// Flying support
-	private final FlyType _flyType;
-	
 	private final boolean _isDebuff;
 	
 	private final boolean _isSuicideAttack;
 	private final boolean _irreplaceableBuff;
 	
-	private final boolean _isClanSkill;
 	private final boolean _excludedFromCheck;
 	private final boolean _simultaneousCast;
 	
@@ -338,15 +329,8 @@ public class Skill implements IIdentifiable
 		
 		_soulMaxConsume = set.getInt("soulMaxConsumeCount", 0);
 		
-		_isHeroSkill = SkillTreesData.getInstance().isHeroSkill(_id, _level);
-		_isGMSkill = SkillTreesData.getInstance().isGMSkill(_id, _level);
-		_isSevenSigns = (_id > 4360) && (_id < 4367);
-		_isClanSkill = SkillTreesData.getInstance().isClanSkill(_id, _level);
-		
 		_directHpDmg = set.getBoolean("dmgDirectlyToHp", false);
 		_effectPoint = set.getInt("effectPoint", 0);
-		
-		_flyType = set.getEnum("flyType", FlyType.class, null);
 		
 		_irreplaceableBuff = set.getBoolean("irreplaceableBuff", false);
 		
@@ -854,6 +838,11 @@ public class Skill implements IIdentifiable
 		return (_operateType != null) && _operateType.isChanneling();
 	}
 	
+	public boolean isFlyType()
+	{
+		return (_operateType != null) && _operateType.isFlyType();
+	}
+	
 	/**
 	 * Verify if the skill is a transformation skill.
 	 * @return {@code true} if the skill is a transformation, {@code false} otherwise
@@ -890,17 +879,17 @@ public class Skill implements IIdentifiable
 	
 	public boolean isHeroSkill()
 	{
-		return _isHeroSkill;
+		return SkillTreesData.getInstance().isHeroSkill(_id, _level);
 	}
 	
 	public boolean isGMSkill()
 	{
-		return _isGMSkill;
+		return SkillTreesData.getInstance().isGMSkill(_id, _level);
 	}
 	
 	public boolean is7Signs()
 	{
-		return _isSevenSigns;
+		return (_id > 4360) && (_id < 4367);
 	}
 	
 	/**
@@ -925,11 +914,6 @@ public class Skill implements IIdentifiable
 	public boolean getDmgDirectlyToHP()
 	{
 		return _directHpDmg;
-	}
-	
-	public FlyType getFlyType()
-	{
-		return _flyType;
 	}
 	
 	public boolean isStayAfterDeath()
@@ -1617,7 +1601,7 @@ public class Skill implements IIdentifiable
 	
 	public boolean isClanSkill()
 	{
-		return _isClanSkill;
+		return SkillTreesData.getInstance().isClanSkill(_id, _level);
 	}
 	
 	public boolean isExcludedFromCheck()
