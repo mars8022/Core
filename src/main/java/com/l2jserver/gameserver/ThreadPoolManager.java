@@ -127,7 +127,7 @@ public class ThreadPoolManager
 		_generalThreadPool = new ThreadPoolExecutor(Config.GENERAL_THREAD_CORE_SIZE, Config.GENERAL_THREAD_CORE_SIZE + 2, 5L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new PriorityThreadFactory("General Pool", Thread.NORM_PRIORITY));
 		_eventThreadPool = new ThreadPoolExecutor(Config.EVENT_MAX_THREAD, Config.EVENT_MAX_THREAD + 2, 5L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new PriorityThreadFactory("Event Pool", Thread.NORM_PRIORITY));
 		
-		scheduleGeneralAtFixedRate(new PurgeTask(_effectsScheduledThreadPool, _generalScheduledThreadPool, _aiScheduledThreadPool, _eventScheduledThreadPool), 10, 5, TimeUnit.MINUTES);
+		scheduleGeneralAtFixedRate(new PurgeTask(_effectsScheduledThreadPool, _generalScheduledThreadPool, _aiScheduledThreadPool, _eventScheduledThreadPool), 1, 1, TimeUnit.MINUTES);
 	}
 	
 	/**
@@ -450,7 +450,7 @@ public class ThreadPoolManager
 	{
 		return new String[]
 		{
-			"Scheduled ThreadPool:",
+			"Scheduled Thread Pool:",
 			" + Effects:",
 			" |- ActiveThreads:   " + _effectsScheduledThreadPool.getActiveCount(),
 			" |- getCorePoolSize: " + _effectsScheduledThreadPool.getCorePoolSize(),
@@ -482,7 +482,7 @@ public class ThreadPoolManager
 			" |- MaximumPoolSize: " + _eventScheduledThreadPool.getMaximumPoolSize(),
 			" |- CompletedTasks:  " + _eventScheduledThreadPool.getCompletedTaskCount(),
 			" |- ScheduledTasks:  " + _eventScheduledThreadPool.getQueue().size(),
-			"ThreadPool:",
+			"Thread Pool:",
 			" + Packets:",
 			" |- ActiveThreads:   " + _generalPacketsThreadPool.getActiveCount(),
 			" |- getCorePoolSize: " + _generalPacketsThreadPool.getCorePoolSize(),
@@ -572,7 +572,6 @@ public class ThreadPoolManager
 			_generalThreadPool.awaitTermination(1, TimeUnit.SECONDS);
 			_eventThreadPool.awaitTermination(1, TimeUnit.SECONDS);
 			LOG.info("All ThreadPools are now stopped");
-			
 		}
 		catch (InterruptedException e)
 		{
