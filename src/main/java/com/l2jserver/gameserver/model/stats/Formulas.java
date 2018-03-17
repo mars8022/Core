@@ -53,6 +53,7 @@ import com.l2jserver.gameserver.model.items.L2Item;
 import com.l2jserver.gameserver.model.items.L2Weapon;
 import com.l2jserver.gameserver.model.items.type.ArmorType;
 import com.l2jserver.gameserver.model.items.type.WeaponType;
+import com.l2jserver.gameserver.model.skills.AttributeType;
 import com.l2jserver.gameserver.model.skills.BuffInfo;
 import com.l2jserver.gameserver.model.skills.Skill;
 import com.l2jserver.gameserver.model.stats.functions.formulas.FuncArmorSet;
@@ -1047,10 +1048,8 @@ public final class Formulas
 				return 1;
 		}
 		
-		int mAtk = attacker.getCubicPower();
-		
 		// Cubics MDAM Formula (similar to PDAM formula, but using 91 instead of 70, also resisted by mDef).
-		double damage = 91 * ((mAtk + skill.getPower()) / mDef);
+		double damage = (91 * attacker.getCubicPower()) / mDef;
 		
 		// Failure calculation
 		L2PcInstance owner = attacker.getOwner();
@@ -1703,11 +1702,11 @@ public final class Formulas
 		int attack_attribute;
 		if (skill != null)
 		{
-			if ((skill.getElement() == -1) || (attacker.getAttackElement() != skill.getElement()))
+			if ((skill.getAttributeType() == AttributeType.NONE) || (attacker.getAttackElement() != skill.getAttributeType().getId()))
 			{
 				return 1;
 			}
-			attack_attribute = attacker.getAttackElementValue(attacker.getAttackElement()) + skill.getElementPower();
+			attack_attribute = attacker.getAttackElementValue(attacker.getAttackElement()) + skill.getAttributePower();
 		}
 		else
 		{
