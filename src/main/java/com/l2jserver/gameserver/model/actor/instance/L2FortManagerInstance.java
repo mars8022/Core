@@ -374,7 +374,7 @@ public class L2FortManagerInstance extends L2MerchantInstance
 						{
 							if (getFort().getOwnerClan() == null)
 							{
-								player.sendMessage("This fortress has no owner, you cannot change the configuration.");
+								player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "fort_no_owner"));
 								return;
 							}
 							val = st.nextToken();
@@ -660,7 +660,7 @@ public class L2FortManagerInstance extends L2MerchantInstance
 						{
 							if (getFort().getOwnerClan() == null)
 							{
-								player.sendMessage("This fortress has no owner, you cannot change the configuration.");
+								player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "fort_no_owner"));
 								return;
 							}
 							val = st.nextToken();
@@ -924,12 +924,12 @@ public class L2FortManagerInstance extends L2MerchantInstance
 					}
 					catch (Exception e)
 					{
-						player.sendMessage("Invalid skill level, contact your admin!");
+						player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "skill_invalid_level"));
 					}
 				}
 				catch (Exception e)
 				{
-					player.sendMessage("Invalid skill level, contact your admin!");
+					player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "skill_invalid_level"));
 				}
 				return;
 			}

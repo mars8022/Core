@@ -66,6 +66,7 @@
 	<!-- Seven Signs -->
 	<message id="ss_teleported_nearest_seal" text="You have been teleported to the nearest town due to the beginning of the Seal Validation period."/>
 	<message id="ss_teleported_nearest_cabal" text="You have been teleported to the nearest town because you have not signed for any cabal."/>
+	<message id="ss_festival_ended_time" text="The Festival of Darkness will end in %s% minute(s)."/>
 	<message id="ss_festival_ended" text="The festival has ended. Your party leader must now register your score before the next festival takes place."/>
 	<message id="ss_remove_player" text="You have been removed from the festival arena."/>
 	<message id="ss_remove_party" text="%s% has been removed from the upcoming Festival."/>
@@ -177,6 +178,10 @@
 	<message id="feature_disabled" text="This feature is disabled."/>
 	<message id="fish_dot_defined" text="Error - Fish are not defined."/>
 	<message id="teleport_protection_ended" text="Teleport spawn protection ended."/>
+	
+	<!-- Request Engage -->
+	<message id="request_engage_accepted" text="Request to Engage has been >ACCEPTED<"/>
+	<message id="request_engage_denied" text="Request to Engage has been >DENIED<"/>
 	
 	<!-- GM -->
 	<message id="gm_buy_list_info" text="Buy List [%s%]"/>
