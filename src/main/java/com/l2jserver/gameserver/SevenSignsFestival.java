@@ -1916,7 +1916,7 @@ public class SevenSignsFestival implements SpawnListener
 					}
 					else
 					{
-						festivalInst.sendMessageToParticipants(LanguageData.getInstance().getMsgByLang(activeChar, "ss_festival_ended_time").replace("%s%", end + ""));
+						festivalInst.sendMessageToParticipants(LanguageData.getInstance().getMsgByLang(null, "ss_festival_ended_time").replace("%s%", end + ""));
 					}
 				}
 				

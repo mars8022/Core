@@ -28,6 +28,7 @@ import com.l2jserver.Config;
 import com.l2jserver.gameserver.data.sql.impl.ClanTable;
 import com.l2jserver.gameserver.data.xml.impl.ClassListData;
 import com.l2jserver.gameserver.data.xml.impl.SkillTreesData;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.InstanceType;
 import com.l2jserver.gameserver.enums.Race;
 import com.l2jserver.gameserver.instancemanager.CastleManager;
