@@ -1916,7 +1916,7 @@ public class SevenSignsFestival implements SpawnListener
 					}
 					else
 					{
-						festivalInst.sendMessageToParticipants("The Festival of Darkness will end in " + end + " minute(s).");
+						festivalInst.sendMessageToParticipants(LanguageData.getInstance().getMsgByLang(null, "ss_festival_ended_time").replace("%s%", end + ""));
 					}
 				}
 				

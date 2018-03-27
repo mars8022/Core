@@ -72,6 +72,7 @@ import com.l2jserver.gameserver.data.xml.impl.PlayerTemplateData;
 import com.l2jserver.gameserver.data.xml.impl.PlayerXpPercentLostData;
 import com.l2jserver.gameserver.data.xml.impl.SkillTreesData;
 import com.l2jserver.gameserver.datatables.ItemTable;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.datatables.SkillData;
 import com.l2jserver.gameserver.enums.DuelState;
 import com.l2jserver.gameserver.enums.HtmlActionScope;
@@ -5125,11 +5126,11 @@ public final class L2PcInstance extends L2Playable
 				if (answer == 1)
 				{
 					CoupleManager.getInstance().createCouple(ptarget, L2PcInstance.this);
-					ptarget.sendMessage("Request to Engage has been >ACCEPTED<");
+					ptarget.sendMessage(LanguageData.getInstance().getMsgByLang(ptarget, "request_engage_accepted"));
 				}
 				else
 				{
-					ptarget.sendMessage("Request to Engage has been >DENIED<!");
+					ptarget.sendMessage(LanguageData.getInstance().getMsgByLang(ptarget, "request_engage_denied"));
 				}
 			}
 		}
@@ -6579,7 +6580,7 @@ public final class L2PcInstance extends L2Playable
 			{
 				sendPacket(ActionFailed.STATIC_PACKET);
 				// FIXME: Wrong Message
-				sendMessage("You cannot mount a steed while holding a flag.");
+				sendMessage(LanguageData.getInstance().getMsgByLang(this, "no_mount_in_flag_mode"));
 				return false;
 			}
 			else if (pet.isHungry())
@@ -7726,7 +7727,7 @@ public final class L2PcInstance extends L2Playable
 			final L2PcInstance cha = target.getActingPlayer();
 			if ((cha != null) && (cha.getDuelId() != getDuelId()))
 			{
-				sendMessage("You cannot do this while duelling.");
+				sendMessage(LanguageData.getInstance().getMsgByLang(this, "duel_no_action"));
 				sendPacket(ActionFailed.STATIC_PACKET);
 				return false;
 			}
@@ -9495,7 +9496,7 @@ public final class L2PcInstance extends L2Playable
 			{
 				teleToLocation(TeleportWhereType.TOWN);
 				setIsIn7sDungeon(false);
-				sendMessage("You have been teleported to the nearest town due to the beginning of the Seal Validation period.");
+				sendMessage(LanguageData.getInstance().getMsgByLang(this, "ss_teleported_nearest_seal"));
 			}
 		}
 		else
@@ -9504,7 +9505,7 @@ public final class L2PcInstance extends L2Playable
 			{
 				teleToLocation(TeleportWhereType.TOWN);
 				setIsIn7sDungeon(false);
-				sendMessage("You have been teleported to the nearest town because you have not signed for any cabal.");
+				sendMessage(LanguageData.getInstance().getMsgByLang(this, "ss_teleported_nearest_cabal"));
 			}
 		}
 		
@@ -9512,15 +9513,15 @@ public final class L2PcInstance extends L2Playable
 		{
 			if (isInvul())
 			{
-				sendMessage("Entering world in Invulnerable mode.");
+				sendMessage(LanguageData.getInstance().getMsgByLang(this, "enter_in_mode_invulnerable"));
 			}
 			if (isInvisible())
 			{
-				sendMessage("Entering world in Invisible mode.");
+				sendMessage(LanguageData.getInstance().getMsgByLang(this, "enter_in_mode_invisible"));
 			}
 			if (isSilenceMode())
 			{
-				sendMessage("Entering world in Silence mode.");
+				sendMessage(LanguageData.getInstance().getMsgByLang(this, "enter_in_mode_silence"));
 			}
 		}
 		
@@ -9738,7 +9739,7 @@ public final class L2PcInstance extends L2Playable
 		}
 		if (isTeleportProtected())
 		{
-			sendMessage("Teleport spawn protection ended.");
+			sendMessage(LanguageData.getInstance().getMsgByLang(this, "teleport_protection_ended"));
 		}
 		setProtection(false);
 		setTeleportProtection(false);
@@ -10581,7 +10582,7 @@ public final class L2PcInstance extends L2Playable
 		List<L2Fish> fish = FishData.getInstance().getFish(lvl, group, grade);
 		if ((fish == null) || fish.isEmpty())
 		{
-			sendMessage("Error - Fish are not defined");
+			sendMessage(LanguageData.getInstance().getMsgByLang(this, "fish_dot_defined"));
 			endFishing(false);
 			return;
 		}
