@@ -90,7 +90,7 @@ public class Skill implements IIdentifiable
 	private final SkillOperateType _operateType;
 	private final int _magic;
 	private final TraitType _traitType;
-	private final boolean _staticReuse;
+	private final boolean _reuseDelayLock;
 	/** Initial MP consumption. */
 	private final int _mpConsume1;
 	/** MP consumption. */
@@ -207,7 +207,7 @@ public class Skill implements IIdentifiable
 		_operateType = set.getEnum("operateType", SkillOperateType.class);
 		_magic = set.getInt("isMagic", 0);
 		_traitType = set.getEnum("trait", TraitType.class, TraitType.NONE);
-		_staticReuse = set.getBoolean("staticReuse", false);
+		_reuseDelayLock = set.getBoolean("reuseDelayLock", false);
 		_mpConsume1 = set.getInt("mpConsume1", 0);
 		_mpConsume2 = set.getInt("mpConsume2", 0);
 		_mpPerChanneling = set.getInt("mpPerChanneling", _mpConsume2);
@@ -722,9 +722,9 @@ public class Skill implements IIdentifiable
 	/**
 	 * @return Returns true to set static reuse.
 	 */
-	public boolean isStaticReuse()
+	public boolean isReuseDelayLocked()
 	{
-		return _staticReuse;
+		return _reuseDelayLock;
 	}
 	
 	/**
