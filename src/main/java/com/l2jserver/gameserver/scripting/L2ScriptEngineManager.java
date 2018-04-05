@@ -42,7 +42,6 @@ import javax.script.ScriptException;
 import javax.script.SimpleScriptContext;
 
 import com.l2jserver.Config;
-import com.l2jserver.script.jython.JythonScriptEngine;
 
 /**
  * Caches script engines and provides functionality for executing and managing scripts.
@@ -365,7 +364,6 @@ public final class L2ScriptEngineManager
 				context.setAttribute(ScriptEngine.FILENAME, relativeName, ScriptContext.ENGINE_SCOPE);
 				context.setAttribute("classpath", SCRIPT_FOLDER.getAbsolutePath(), ScriptContext.ENGINE_SCOPE);
 				context.setAttribute("sourcepath", SCRIPT_FOLDER.getAbsolutePath(), ScriptContext.ENGINE_SCOPE);
-				context.setAttribute(JythonScriptEngine.JYTHON_ENGINE_INSTANCE, engine, ScriptContext.ENGINE_SCOPE);
 				
 				setCurrentLoadingScript(file);
 				ScriptContext ctx = engine.getContext();
