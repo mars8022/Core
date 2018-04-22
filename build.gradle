@@ -26,7 +26,6 @@ dependencies {
 	compile 'org.eclipse.jdt.core.compiler:ecj:4.6.1'
 	compile 'com.google.code.gson:gson:2.8.2'
 	compile 'com.google.guava:guava:24.0-jre'
-	compile 'org.python:jython:2.2.1'
 	compile 'org.slf4j:slf4j-api:1.8.0-beta1'
 	compile 'org.slf4j:slf4j-jdk14:1.8.0-beta1'
 	compile fileTree(dir: 'dist/libs', include: '*.jar')
