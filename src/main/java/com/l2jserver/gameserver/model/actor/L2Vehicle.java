@@ -55,13 +55,13 @@ public abstract class L2Vehicle extends L2Character
 {
 	private static final Logger LOG = LoggerFactory.getLogger(L2Vehicle.class);
 	
-	protected int _dockId = 0;
-	protected final List<L2PcInstance> _passengers = new CopyOnWriteArrayList<>();
-	protected Location _oustLoc = null;
+	private int _dockId = -1;
+	private final List<L2PcInstance> _passengers = new CopyOnWriteArrayList<>();
+	private Location _oustLoc = null;
 	private Runnable _engine = null;
 	
-	protected VehiclePathPoint[] _currentPath = null;
-	protected int _runState = 0;
+	private VehiclePathPoint[] _currentPath = null;
+	private int _runState = 0;
 	
 	/**
 	 * Creates an abstract vehicle.
@@ -118,8 +118,9 @@ public abstract class L2Vehicle extends L2Character
 			{
 				getStat().setRotationSpeed(point.getRotationSpeed());
 			}
-			
 			getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(point.getX(), point.getY(), point.getZ(), 0));
+			updatePosition();
+			updateWorldRegion();
 			return;
 		}
 		getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
