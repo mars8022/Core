@@ -98,7 +98,7 @@ public abstract class L2Vehicle extends L2Character
 	{
 		if (_engine != null)
 		{
-			ThreadPoolManager.getInstance().scheduleGeneral(_engine, delay);
+			ThreadPoolManager.getInstance().scheduleAi(_engine, delay);
 		}
 	}
 	
