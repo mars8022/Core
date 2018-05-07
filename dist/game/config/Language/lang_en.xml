@@ -221,8 +221,8 @@
 	<message id="teleport_protection_ended" text="Teleport spawn protection ended."/>
 	
 	<!-- Request Engage -->
-	<message id="request_engage_accepted" text="Request to Engage has been >ACCEPTED<"/>
-	<message id="request_engage_denied" text="Request to Engage has been >DENIED<"/>
+	<message id="request_engage_accepted" text="Request to Engage has been Accepted!"/>
+	<message id="request_engage_denied" text="Request to Engage has been Denied!"/>
 	
 	<!-- GM -->
 	<message id="gm_buy_list_info" text="Buy List [%s%]"/>
