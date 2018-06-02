@@ -93,9 +93,9 @@ public class L2SwampZone extends L2ZoneType
 	public void setEnabled(boolean state)
 	{
 		_enabled = state;
-		if (state && (_broadcastTrapAnimation == null))
+		if (_enabled && (_broadcastTrapAnimation == null))
 		{
-			_broadcastTrapAnimation = ThreadPoolManager.getInstance().scheduleEffectAtFixedRate(new broadcastTrapAnimation(), 1000, 15000);
+			_broadcastTrapAnimation = ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(new broadcastTrapAnimation(), 1000, 15000);
 		}
 	}
 	
