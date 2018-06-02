@@ -18,12 +18,16 @@
  */
 package com.l2jserver.gameserver.model.zone.type;
 
+import java.util.concurrent.ScheduledFuture;
+
+import com.l2jserver.gameserver.ThreadPoolManager;
 import com.l2jserver.gameserver.instancemanager.CastleManager;
 import com.l2jserver.gameserver.model.actor.L2Character;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jserver.gameserver.model.entity.Castle;
 import com.l2jserver.gameserver.model.zone.L2ZoneType;
 import com.l2jserver.gameserver.model.zone.ZoneId;
+import com.l2jserver.gameserver.network.serverpackets.OnEventTrigger;
 
 /**
  * another type of zone where your speed is changed
@@ -35,6 +39,9 @@ public class L2SwampZone extends L2ZoneType
 	
 	private int _castleId;
 	private Castle _castle;
+	int _eventId;
+	
+	ScheduledFuture<?> _broadcastTrapAnimation = null;
 	
 	public L2SwampZone(int id)
 	{
@@ -46,6 +53,9 @@ public class L2SwampZone extends L2ZoneType
 		// no castle by default
 		_castleId = 0;
 		_castle = null;
+		
+		// no event by default
+		_eventId = 0;
 	}
 	
 	@Override
@@ -59,13 +69,17 @@ public class L2SwampZone extends L2ZoneType
 		{
 			_castleId = Integer.parseInt(value);
 		}
+		else if (name.equals("eventId"))
+		{
+			_eventId = Integer.parseInt(value);
+		}
 		else
 		{
 			super.setParameter(name, value);
 		}
 	}
 	
-	private Castle getCastle()
+	Castle getCastle()
 	{
 		if ((_castleId > 0) && (_castle == null))
 		{
@@ -73,6 +87,43 @@ public class L2SwampZone extends L2ZoneType
 		}
 		
 		return _castle;
+	}
+	
+	@Override
+	public void setEnabled(boolean state)
+	{
+		_enabled = state;
+		if (state && (_broadcastTrapAnimation == null))
+		{
+			_broadcastTrapAnimation = ThreadPoolManager.getInstance().scheduleEffectAtFixedRate(new broadcastTrapAnimation(), 1000, 15000);
+		}
+	}
+	
+	private class broadcastTrapAnimation implements Runnable
+	{
+		public broadcastTrapAnimation()
+		{
+		}
+		
+		@Override
+		public void run()
+		{
+			final Castle castle = getCastle();
+			if (castle != null)
+			{
+				if (castle.getSiege().isInProgress() && isEnabled())
+				{
+					castle.getZone().broadcastPacket(new OnEventTrigger(_eventId, true));
+				}
+				else
+				{
+					castle.getZone().broadcastPacket(new OnEventTrigger(_eventId, false));
+					// Keep task running?
+					// What when player returns to castle after task canceled?
+					// _broadcastTrapAnimation.cancel(true);
+				}
+			}
+		}
 	}
 	
 	@Override
