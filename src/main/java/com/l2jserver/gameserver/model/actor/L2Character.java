@@ -6440,12 +6440,22 @@ public abstract class L2Character extends L2Object implements ISkillsHolder, IDe
 	
 	public int getAttackElementValue(byte attackAttribute)
 	{
-		return getStat().getAttackElementValue(attackAttribute);
+		final int value = getStat().getAttackElementValue(attackAttribute);
+		if ((value > Config.L2JMOD_MAX_ATTACK_ELEMENT) && (Config.L2JMOD_MAX_ATTACK_ELEMENT > -1) && !isGM())
+		{
+			return Config.L2JMOD_MAX_ATTACK_ELEMENT;
+		}
+		return value;
 	}
 	
 	public int getDefenseElementValue(byte defenseAttribute)
 	{
-		return getStat().getDefenseElementValue(defenseAttribute);
+		final int value = getStat().getDefenseElementValue(defenseAttribute);
+		if ((value > Config.L2JMOD_MAX_DEFENSE_ELEMENT) && (Config.L2JMOD_MAX_DEFENSE_ELEMENT > -1) && !isGM())
+		{
+			return Config.L2JMOD_MAX_DEFENSE_ELEMENT;
+		}
+		return value;
 	}
 	
 	public final void startPhysicalAttackMuted()
