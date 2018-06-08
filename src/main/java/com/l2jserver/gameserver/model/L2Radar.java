@@ -38,7 +38,7 @@ public final class L2Radar
 	}
 	
 	// Add a marker to player's radar
-	public void addMarker(final int x, final int y, final int z)
+	public void addMarker(int x, int y, int z)
 	{
 		RadarMarker newMarker = new RadarMarker(x, y, z);
 		_markers.add(newMarker);
