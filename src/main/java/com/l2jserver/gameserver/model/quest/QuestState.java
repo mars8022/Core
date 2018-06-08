@@ -776,9 +776,17 @@ public final class QuestState
 	
 	// TODO: More radar functions need to be added when the radar class is complete.
 	// BEGIN STUFF THAT WILL PROBABLY BE CHANGED
-	public void addRadar(int x, int y, int z)
+	public void addRadar(int x, int y, int z, boolean autoOpenMinimap)
 	{
-		_player.getRadar().addMarker(x, y, z);
+		if (autoOpenMinimap)
+		{
+			_player().sendPacket(new ShowMiniMap(1665));
+			_player().getRadar().addMarker(x, y, z);
+		}
+		else
+		{
+			_player.getRadar().addMarker(x, y, z);
+		}
 	}
 	
 	public void removeRadar(int x, int y, int z)
