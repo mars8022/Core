@@ -22,6 +22,7 @@ import static com.l2jserver.gameserver.model.itemcontainer.Inventory.ADENA_ID;
 
 import com.l2jserver.Config;
 import com.l2jserver.gameserver.datatables.ItemTable;
+import com.l2jserver.gameserver.datatables.LanguageData;
 import com.l2jserver.gameserver.enums.ItemLocation;
 import com.l2jserver.gameserver.enums.PrivateStoreType;
 import com.l2jserver.gameserver.instancemanager.MailManager;
@@ -75,7 +76,7 @@ public final class RequestPostAttachment extends L2GameClientPacket
 		
 		if (!activeChar.getAccessLevel().allowTransaction())
 		{
-			activeChar.sendMessage("Transactions are disabled for your Access Level");
+			activeChar.sendMessage(LanguageData.getInstance().getMsgByLang(activeChar, "transactions_disabled"));
 			return;
 		}
 		

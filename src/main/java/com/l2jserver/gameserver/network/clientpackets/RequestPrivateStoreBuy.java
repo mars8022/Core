@@ -126,7 +126,7 @@ public final class RequestPrivateStoreBuy extends L2GameClientPacket
 		
 		if (!player.getAccessLevel().allowTransaction())
 		{
-			player.sendMessage("Transactions are disabled for your Access Level.");
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "transactions_disabled"));
 			sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
