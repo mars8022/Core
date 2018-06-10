@@ -1060,7 +1060,7 @@ public class L2VillageMasterInstance extends L2NpcInstance
 		
 		if (subPledge == null)
 		{
-			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "pledge_name_change"));
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "pledge_no_exists"));
 			return;
 		}
 		if (!isValidName(pledgeName) || (pledgeName.length() < 2))
