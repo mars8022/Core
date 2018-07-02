@@ -106,8 +106,7 @@ public class L2VillageMasterInstance extends L2NpcInstance
 				if (st.hasMoreTokens())
 				{
 					final String clanName = st.nextToken();
-					
-					if (!isValidName(clanName))
+					if (st.hasMoreTokens() || !isValidName(clanName))
 					{
 						player.sendPacket(SystemMessageId.CLAN_NAME_INCORRECT);
 						return;
@@ -1060,7 +1059,7 @@ public class L2VillageMasterInstance extends L2NpcInstance
 		
 		if (subPledge == null)
 		{
-			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "pledge_name_change"));
+			player.sendMessage(LanguageData.getInstance().getMsgByLang(player, "pledge_no_exists"));
 			return;
 		}
 		if (!isValidName(pledgeName) || (pledgeName.length() < 2))

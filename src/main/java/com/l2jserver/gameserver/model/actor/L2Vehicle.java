@@ -118,9 +118,10 @@ public abstract class L2Vehicle extends L2Character
 			{
 				getStat().setRotationSpeed(point.getRotationSpeed());
 			}
-			getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(point.getX(), point.getY(), point.getZ(), 0));
-			updatePosition();
-			updateWorldRegion();
+			if (updatePosition())
+			{
+				getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(point.getX(), point.getY(), point.getZ(), 0));
+			}
 			return;
 		}
 		getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
@@ -233,8 +234,11 @@ public abstract class L2Vehicle extends L2Character
 	
 	public void oustPlayers()
 	{
-		_passengers.forEach(p -> oustPlayer(p));
-		_passengers.clear();
+		if (!_passengers.isEmpty())
+		{
+			_passengers.forEach(p -> oustPlayer(p));
+			_passengers.clear();
+		}
 	}
 	
 	public void oustPlayer(L2PcInstance player)
