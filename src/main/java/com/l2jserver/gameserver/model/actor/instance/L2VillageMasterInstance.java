@@ -106,8 +106,7 @@ public class L2VillageMasterInstance extends L2NpcInstance
 				if (st.hasMoreTokens())
 				{
 					final String clanName = st.nextToken();
-					
-					if (!isValidName(clanName))
+					if (st.hasMoreTokens() || !isValidName(clanName))
 					{
 						player.sendPacket(SystemMessageId.CLAN_NAME_INCORRECT);
 						return;
