@@ -21,6 +21,7 @@ package com.l2jserver.gameserver.model;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.l2jserver.gameserver.ThreadPoolManager;
 import com.l2jserver.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jserver.gameserver.network.serverpackets.RadarControl;
 
@@ -68,7 +69,6 @@ public final class L2Radar
 		{
 			_player.sendPacket(new RadarControl(2, 2, tempMarker._x, tempMarker._y, tempMarker._z));
 		}
-		
 		_markers.clear();
 	}
 	
@@ -121,10 +121,12 @@ public final class L2Radar
 			{
 				return true;
 			}
+			
 			if (!(obj instanceof RadarMarker))
 			{
 				return false;
 			}
+			
 			final RadarMarker other = (RadarMarker) obj;
 			if ((_type != other._type) || (_x != other._x) || (_y != other._y) || (_z != other._z))
 			{

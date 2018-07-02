@@ -41,6 +41,7 @@ import com.l2jserver.gameserver.model.holders.ItemHolder;
 import com.l2jserver.gameserver.model.itemcontainer.Inventory;
 import com.l2jserver.gameserver.network.serverpackets.ExShowQuestMark;
 import com.l2jserver.gameserver.network.serverpackets.QuestList;
+import com.l2jserver.gameserver.network.serverpackets.ShowMiniMap;
 import com.l2jserver.gameserver.network.serverpackets.TutorialCloseHtml;
 import com.l2jserver.gameserver.network.serverpackets.TutorialEnableClientEvent;
 import com.l2jserver.gameserver.network.serverpackets.TutorialShowQuestionMark;
@@ -780,8 +781,8 @@ public final class QuestState
 	{
 		if (autoOpenMinimap)
 		{
-			_player().sendPacket(new ShowMiniMap(1665));
-			_player().getRadar().addMarker(x, y, z);
+			_player.sendPacket(new ShowMiniMap(1665));
+			_player.getRadar().addMarker(x, y, z);
 		}
 		else
 		{
