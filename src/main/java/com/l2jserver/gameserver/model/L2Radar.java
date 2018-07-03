@@ -43,15 +43,12 @@ public final class L2Radar
 	{
 		RadarMarker newMarker = new RadarMarker(x, y, z);
 		_markers.add(newMarker);
-		ThreadPoolManager.getInstance().scheduleGeneral(new Runnable()
+		
+		ThreadPoolManager.getInstance().scheduleGeneral(() ->
 		{
-			@Override
-			public void run()
-			{
-				_player.sendPacket(new RadarControl(2, 2, x, y, z));
-				_player.sendPacket(new RadarControl(0, 1, x, y, z));
-			}
-		}, 500);} 
+			_player.sendPacket(new RadarControl(2, 2, x, y, z));
+			_player.sendPacket(new RadarControl(0, 1, x, y, z));
+		}, 500);
 	}
 	
 	// Remove a marker from player's radar

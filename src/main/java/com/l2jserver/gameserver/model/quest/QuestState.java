@@ -790,6 +790,11 @@ public final class QuestState
 		}
 	}
 	
+	public void addRadar(int x, int y, int z)
+	{
+		_player.getRadar().addMarker(x, y, z);
+	}
+	
 	public void removeRadar(int x, int y, int z)
 	{
 		_player.getRadar().removeMarker(x, y, z);
